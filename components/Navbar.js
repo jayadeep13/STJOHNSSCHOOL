@@ -161,8 +161,8 @@ export default function Navbar() {
 
       {/* Mobile / tablet menu */}
       <div
-        className={`lg:hidden fixed left-0 right-0 top-16 z-50 overflow-hidden transition-[max-height] duration-300 ease-in-out ${
-          open ? "max-h-[calc(100vh-4rem)]" : "max-h-0"
+        className={`lg:hidden fixed inset-x-0 top-16 z-50 transition-all duration-200 ease-out ${
+          open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-3 opacity-0"
         }`}
       >
         <nav className="relative max-h-[calc(100vh-4rem)] overflow-y-auto rounded-b-[28px] border-t border-ink/10 bg-gradient-to-b from-paper to-amber-50/50 px-4 pb-6 pt-5 shadow-2xl">

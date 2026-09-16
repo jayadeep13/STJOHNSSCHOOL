@@ -41,7 +41,7 @@ export default function Home() {
             alt="Together for a Brighter Tomorrow — St. John's School students"
             fill
             priority
-            className="object-cover"
+            className="object-cover object-[72%_38%] sm:object-center"
             sizes="100vw"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-black/25" />
