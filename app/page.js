@@ -390,7 +390,8 @@ export default function Home() {
       </section>
 
       {/* BETI BACHAO BETI PADHAO */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <section className="bg-rose-50/70 py-20 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-10 items-center">
           <Reveal className="lg:col-span-5">
             <div className="relative mx-auto max-w-sm">
@@ -491,6 +492,7 @@ export default function Home() {
               </div>
             </div>
           </Reveal>
+        </div>
         </div>
       </section>
 
