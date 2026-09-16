@@ -36,11 +36,6 @@ export const metadata = {
   keywords: SITE_KEYWORDS,
   authors: [{ name: "The Joshua Foundation" }],
   creator: "The Joshua Foundation",
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-icon.png",
-  },
   openGraph: {
     type: "website",
     locale: "en_US",
