@@ -45,6 +45,7 @@ const NAV_COLORS = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [openSection, setOpenSection] = useState(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -60,6 +61,13 @@ export default function Navbar() {
 
   const isActive = (item) =>
     item.href ? pathname === item.href : item.match?.some((m) => pathname.startsWith(m));
+
+  useEffect(() => {
+    if (!open) return;
+    const activeParent = NAV.find((item) => item.children && isActive(item));
+    setOpenSection(activeParent ? activeParent.label : null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
 
   return (
     <header
@@ -181,6 +189,7 @@ export default function Navbar() {
               const active = isActive(item);
 
               if (item.children) {
+                const sectionOpen = openSection === item.label;
                 return (
                   <div
                     key={item.label}
@@ -188,32 +197,50 @@ export default function Navbar() {
                       active ? "ring-brick/25" : "ring-ink/5"
                     }`}
                   >
-                    <div className="flex items-center gap-3 px-4 py-3">
+                    <button
+                      type="button"
+                      onClick={() => setOpenSection(sectionOpen ? null : item.label)}
+                      aria-expanded={sectionOpen}
+                      className="flex w-full items-center gap-3 px-4 py-3 text-left"
+                    >
                       <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${theme.bg}`}>
                         <item.icon className={`h-4 w-4 ${theme.color}`} strokeWidth={1.75} />
                       </span>
                       <span
-                        className={`font-mono text-[11px] font-semibold uppercase tracking-[0.14em] ${
+                        className={`flex-1 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] ${
                           active ? "text-brick" : "text-ink/50"
                         }`}
                       >
                         {item.label}
                       </span>
-                    </div>
-                    <div className="divide-y divide-ink/5 border-t border-ink/5 bg-ink/[0.015]">
-                      {item.children.map((c) => (
-                        <Link
-                          key={c.href}
-                          href={c.href}
-                          onClick={() => setOpen(false)}
-                          className={`flex items-center justify-between gap-2 py-3 pl-[52px] pr-4 text-[14.5px] font-medium transition-colors ${
-                            pathname === c.href ? "text-brick" : "text-ink/75 hover:text-indigo"
-                          }`}
-                        >
-                          {c.label}
-                          <ChevronRight className="h-4 w-4 shrink-0 opacity-40" />
-                        </Link>
-                      ))}
+                      <ChevronDown
+                        className={`h-4 w-4 shrink-0 text-ink/30 transition-transform duration-200 ${
+                          sectionOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    <div
+                      className={`grid transition-all duration-200 ease-out ${
+                        sectionOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <div className="divide-y divide-ink/5 border-t border-ink/5 bg-ink/[0.015]">
+                          {item.children.map((c) => (
+                            <Link
+                              key={c.href}
+                              href={c.href}
+                              onClick={() => setOpen(false)}
+                              className={`flex items-center justify-between gap-2 py-3 pl-[52px] pr-4 text-[14.5px] font-medium transition-colors ${
+                                pathname === c.href ? "text-brick" : "text-ink/75 hover:text-indigo"
+                              }`}
+                            >
+                              {c.label}
+                              <ChevronRight className="h-4 w-4 shrink-0 opacity-40" />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 );

@@ -2,6 +2,7 @@ import { PT_Serif, Manrope, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageTransition from "@/components/PageTransition";
 import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, SITE_KEYWORDS } from "@/lib/seo";
 
 const ptSerif = PT_Serif({
@@ -66,6 +67,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${ptSerif.variable} ${manrope.variable} ${plexMono.variable}`}>
       <body className="font-body bg-paper text-ink antialiased">
+        <PageTransition />
         <Navbar />
         <main>{children}</main>
         <Footer />

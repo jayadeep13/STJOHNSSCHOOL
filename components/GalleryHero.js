@@ -24,16 +24,24 @@ export default function GalleryHero({ photos }) {
   return (
     <section className="relative min-h-[360px] overflow-hidden bg-gradient-to-br from-indigo via-indigo to-indigo-dark lg:min-h-[420px]">
       {featured.length > 0 && (
-        <div className="absolute inset-0 hidden sm:block">
-          {featured.map((p, i) => (
-            <div
-              key={p.id}
-              className={`absolute overflow-hidden rounded-xl ring-4 ring-white/15 shadow-2xl ${COLLAGE_LAYOUT[i % COLLAGE_LAYOUT.length]}`}
-            >
-              <Image src={p.src} alt="" fill className="object-cover" sizes="180px" />
-            </div>
-          ))}
-        </div>
+        <>
+          {/* Mobile: single full-bleed photo (the scattered collage below doesn't fit a narrow screen) */}
+          <div className="absolute inset-0 sm:hidden">
+            <Image src={featured[0].src} alt="" fill priority className="object-cover" sizes="100vw" />
+          </div>
+
+          {/* Tablet/desktop: scattered photo collage */}
+          <div className="absolute inset-0 hidden sm:block">
+            {featured.map((p, i) => (
+              <div
+                key={p.id}
+                className={`absolute overflow-hidden rounded-xl ring-4 ring-white/15 shadow-2xl ${COLLAGE_LAYOUT[i % COLLAGE_LAYOUT.length]}`}
+              >
+                <Image src={p.src} alt="" fill className="object-cover" sizes="180px" />
+              </div>
+            ))}
+          </div>
+        </>
       )}
 
       {/* legibility scrim so headline reads clearly over the busy photo wall */}
