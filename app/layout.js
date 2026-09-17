@@ -1,9 +1,12 @@
+import { headers, cookies } from "next/headers";
 import { PT_Serif, Manrope, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
+import GeoBlocked from "@/components/GeoBlocked";
 import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, SITE_KEYWORDS } from "@/lib/seo";
+import { GEO_BYPASS_COOKIE, isIndiaRequest } from "@/lib/geo";
 
 const ptSerif = PT_Serif({
   subsets: ["latin"],
@@ -64,13 +67,22 @@ export const viewport = {
 };
 
 export default function RootLayout({ children }) {
+  const hasBypass = cookies().get(GEO_BYPASS_COOKIE)?.value === "1";
+  const blocked = !hasBypass && isIndiaRequest(headers());
+
   return (
     <html lang="en" className={`${ptSerif.variable} ${manrope.variable} ${plexMono.variable}`}>
       <body className="font-body bg-paper text-ink antialiased">
-        <PageTransition />
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        {blocked ? (
+          <GeoBlocked />
+        ) : (
+          <>
+            <PageTransition />
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </>
+        )}
       </body>
     </html>
   );
