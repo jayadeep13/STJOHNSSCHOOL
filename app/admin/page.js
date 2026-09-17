@@ -24,10 +24,13 @@ export default async function AdminPage() {
     );
   }
 
+  // Academics and Blog Posts still read/write the local filesystem, which is
+  // read-only on Vercel — don't let that crash the whole admin page while
+  // Gallery (already migrated to Cloudinary) works fine.
   const [galleryPhotos, academicsPhotos, blogPosts] = await Promise.all([
-    getGalleryPhotos(),
-    getAcademicsPhotos(),
-    getBlogPosts(),
+    getGalleryPhotos().catch(() => []),
+    getAcademicsPhotos().catch(() => []),
+    getBlogPosts().catch(() => []),
   ]);
 
   return (
