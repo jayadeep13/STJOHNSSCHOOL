@@ -389,6 +389,95 @@ export default function Home() {
         </div>
       </section>
 
+      {/* RAY STARK SPOTLIGHT */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-sky-50 via-paper to-indigo-50/40 py-20 sm:py-24">
+        <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-sky-200/25 blur-3xl" />
+        <div className="pointer-events-none absolute -right-20 bottom-0 h-64 w-64 rounded-full bg-marigold/15 blur-3xl" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal className="mx-auto mb-14 max-w-xl text-center">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-brick">Volunteer Spotlight</p>
+            <h2 className="mt-3 font-display text-3xl sm:text-4xl font-semibold text-indigo">
+              Leading by Example
+            </h2>
+            <span className="mx-auto mt-3 block h-1 w-14 rounded-full bg-marigold" />
+          </Reveal>
+
+          <div className="grid items-center gap-12 lg:grid-cols-12">
+            <Reveal direction="left" className="lg:col-span-5">
+              <div className="relative mx-auto max-w-sm">
+                <div className="aspect-[3/4] overflow-hidden rounded-[28px] shadow-lg ring-1 ring-ink/10">
+                  <Image
+                    src="/images/ray (4).jpeg"
+                    alt="Mr. Ray Stark painting a classroom wall at St. John's School"
+                    width={600}
+                    height={800}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-5 -right-5 hidden rounded-2xl bg-white px-4 py-3 shadow-lg ring-1 ring-ink/10 sm:block">
+                  <p className="font-display text-sm font-semibold text-indigo">Mr. Ray Stark</p>
+                  <p className="text-xs text-ink/50">Supporter, St. John&rsquo;s School</p>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal direction="right" delay={120} className="lg:col-span-7">
+              <h3 className="font-display text-2xl sm:text-3xl font-semibold text-indigo leading-tight">
+                A man with a big heart, hard at work for St. John&rsquo;s.
+              </h3>
+              <p className="mt-5 text-ink/70 leading-relaxed">
+                Mr. Ray Stark is a man with a big heart and a deep passion for educating students
+                in India. He is not only supportive but also a very hardworking individual whose
+                work and deeds are always appreciated.
+              </p>
+              <p className="mt-4 text-ink/70 leading-relaxed">
+                He personally joined us in painting the classrooms to make them ready for children
+                to sit and study. His vision is to prepare well-equipped classrooms where students
+                can sit, learn, build their confidence, and become valuable assets for the future.
+              </p>
+
+              <div className="mt-6 rounded-2xl bg-gradient-to-br from-sky-50 via-white to-white p-6 shadow-sm ring-1 ring-sky-100">
+                <Quote className="h-5 w-5 text-sky-600" strokeWidth={1.75} />
+                <p className="mt-2 font-display text-lg italic leading-snug text-indigo">
+                  If you educate a child, you educate a family. If you educate a family, you
+                  educate a community. If you educate a community, you transform a nation.
+                </p>
+              </div>
+
+              <p className="mt-5 text-ink/70 leading-relaxed">
+                He always wants to see a better future for students around the globe. St.
+                John&rsquo;s is truly fortunate to have his contribution in shaping a better
+                future for our nation &mdash; in keeping with our own motto: holistic education
+                with excellence.
+              </p>
+              <p className="mt-4 font-display text-base italic text-brick">
+                Thank you, Ray, for your dedicated service.
+              </p>
+            </Reveal>
+          </div>
+
+          <div className="mt-14 grid grid-cols-3 gap-4 sm:mt-16">
+            {[
+              { src: "/images/ray (3).jpeg", alt: "Ray Stark painting a classroom wall at St. John's" },
+              { src: "/images/ray (1).jpeg", alt: "Ray Stark teaching students at St. John's" },
+              { src: "/images/ray (6).jpeg", alt: "Ray Stark walking the school grounds with staff" },
+            ].map((p, i) => (
+              <Reveal key={p.src} direction="up" delay={i * 90}>
+                <div className="aspect-[4/3] overflow-hidden rounded-2xl shadow-sm ring-1 ring-ink/10">
+                  <Image
+                    src={p.src}
+                    alt={p.alt}
+                    width={400}
+                    height={300}
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* BETI BACHAO BETI PADHAO */}
       <section className="bg-rose-50/70 py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
